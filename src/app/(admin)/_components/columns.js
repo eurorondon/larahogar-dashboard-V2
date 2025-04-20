@@ -1,12 +1,8 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
 import { Eye } from "lucide-react";
-import { Button } from "@/components/ui/button"; // Ajusta la ruta según tu proyecto
-import { useRouter } from "next/navigation";
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
+import { Button } from "@/components/ui/button"; // Ajusta la ruta si es necesario
+import Link from "next/link";
 
 export const columns = [
   {
@@ -21,7 +17,7 @@ export const columns = [
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
-      }).format(date); // Resultado: 09-04-2025
+      }).format(date);
     },
   },
   {
@@ -70,29 +66,25 @@ export const columns = [
   },
   {
     header: "Telefono",
-    accessorFn: (row) => row.user?.phoneNumber ?? "Sin correo",
+    accessorFn: (row) => row.user?.phoneNumber ?? "Sin teléfono",
     id: "Telefono",
   },
   {
     accessorKey: "totalPrice",
-    header: "Email",
+    header: "Total",
   },
-
   {
     id: "actions",
     header: "Detalles",
     cell: ({ row }) => {
-      const orderId = row.original.id; // o cualquier dato que necesites
-      const router = useRouter(); // Hook de enrutamiento
+      const orderId = row.original.id;
 
       return (
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => router.push(`/orders/${orderId}`)}
-        >
-          <Eye className="h-4 w-4" />
-        </Button>
+        <Link href={`/orders/${orderId}`}>
+          <Button variant="ghost" size="icon">
+            <Eye className="h-4 w-4" />
+          </Button>
+        </Link>
       );
     },
   },
