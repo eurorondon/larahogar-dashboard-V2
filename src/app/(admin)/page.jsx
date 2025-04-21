@@ -7,6 +7,7 @@ import { DataTable } from "./_components/data-table";
 import { columns } from "./_components/columns";
 import { useRouter } from "next/navigation";
 import { CircleDollarSign, ShoppingBag, ShoppingBasket } from "lucide-react";
+import Loader from "../components/Loader";
 
 // Esta función es usada por React Query
 async function getDataMock() {
@@ -55,7 +56,11 @@ const Page = () => {
   });
 
   if (isLoadingProductos || isLoadingOrders || isLoadingMock) {
-    return <div>Cargando...</div>;
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
 
   if (errorProductos || errorOrders || errorMock) {
@@ -64,13 +69,13 @@ const Page = () => {
 
   return (
     <div className="container pt-5 mx-auto">
-      <div className="flex gap-4 mb-8">
+      <div className="flex flex-col md:flex-row gap-10 md:gap-3 mx-5 md:mx-0 mb-8">
         {/* Tarjeta para productos */}
         <div
           className="p-6 bg-white shadow-md rounded-lg flex-1 cursor-pointer"
           onClick={() => router.push("/productos")}
         >
-          <div className="flex items-center  gap-5">
+          <div className="flex items-center justify-center md:justify-start gap-5">
             <h5 className="text-xl font-semibold mb-2">Total Productos</h5>
             <div className="bg-blue-100 flex justify-center items-center rounded-full p-1">
               <ShoppingBasket size={40} className="text-blue-400" />
@@ -86,7 +91,7 @@ const Page = () => {
           className="p-6 bg-white shadow-md rounded-lg flex-1 cursor-pointer"
           onClick={() => router.push("/ordenes")}
         >
-          <div className="flex items-center  gap-5">
+          <div className="flex items-center justify-center md:justify-start  gap-5">
             <h5 className="text-xl font-semibold mb-2">Total Órdenes</h5>
             <div className="bg-green-200 flex justify-center items-center rounded-full p-2">
               <ShoppingBag size={35} className="text-green-400" />
@@ -98,7 +103,7 @@ const Page = () => {
 
         {/* Tarjeta para total venta */}
         <div className="p-6 bg-white shadow-md rounded-lg flex-1">
-          <div className="flex items-center  gap-5">
+          <div className="flex items-center justify-center md:justify-start  gap-5">
             <h5 className="text-xl font-semibold mb-2">Total Venta</h5>
             <div className="bg-yellow-200 flex justify-center items-center rounded-full p-1">
               <CircleDollarSign size={40} className="text-yellow-400" />

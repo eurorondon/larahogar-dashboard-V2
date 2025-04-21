@@ -32,21 +32,21 @@ function Productos() {
   Amplify.configure(amplifyconfig);
   const client = generateClient();
   const queryClient = useQueryClient();
-  const [mosaico, setMosaico] = React.useState(false);
+  const [mosaico, setMosaico] = React.useState(true);
 
-  React.useEffect(() => {
-    if (window.innerWidth > 800) {
-      setMosaico(true);
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (window.innerWidth > 800) {
+  //     setMosaico(true);
+  //   }
+  // }, []);
 
   const { category, search } = useParams();
 
-  React.useEffect(() => {
-    if (window.innerWidth < 800) {
-      setMosaico(false);
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (window.innerWidth < 800) {
+  //     setMosaico(false);
+  //   }
+  // }, []);
 
   const capitalizeFirstLetter = (str) => {
     if (str.length === 0) return str;
@@ -141,7 +141,7 @@ function Productos() {
   if (isLoading) return <Loader />;
   return (
     <>
-      <div className=" flex justify-end items-center  bg-white ">
+      {/* <div className=" flex justify-end items-center  bg-white ">
         <span className="font-bold">View Options</span>
         {mosaico ? (
           <IoListOutline
@@ -156,7 +156,7 @@ function Productos() {
             onClick={() => setMosaico(true)}
           />
         )}
-      </div>
+      </div> */}
       <InfiniteScroll
         dataLength={products ? products.length : 0}
         hasMore={hasNextPage}
