@@ -7,7 +7,7 @@ import ReactQueryProvider from "../wraper/QueryProviderWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Grafico Caracas",
+  title: "Lara hogar plastic",
   description: "Excelentes precios",
   icons: {
     icon: "/icon.png",
