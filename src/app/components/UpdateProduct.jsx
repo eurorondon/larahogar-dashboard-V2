@@ -384,24 +384,24 @@ function UpdateProduct({ hasEdit, productId }) {
   // }, [isSuccess, isError]);
 
   return (
-    <div className="   ">
+    <div className=" flex justify-center   ">
       <div
         className="bg-white  p-5  border  shadow-lg "
         style={{ minHeight: "90vh" }}
       >
-        <div className="card  ">
+        <div className="card min-w-96">
           <div className="card-body">
-            <div className="">
+            <div>
               <label
                 htmlFor="product_title"
-                className="block   text-sm font-bold mt-2"
+                className="block text-sm font-bold mt-2"
               >
                 Titulo de Producto
               </label>
               <input
                 type="text"
                 placeholder="Escribir aqui"
-                className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 focus:border-blue-500"
+                className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 focus:border-blue-500"
                 id="product_title"
                 required
                 value={name}
@@ -410,79 +410,78 @@ function UpdateProduct({ hasEdit, productId }) {
             </div>
 
             {name === data?.name && "🔴"}
+
             <div className="mb-4">
               <label
-                htmlFor="product_title"
-                className="block   text-sm font-bold mt-2 "
+                htmlFor="category"
+                className="block text-sm font-bold mt-2"
               >
                 Categoria
               </label>
-              <div className="  ">
-                <select
-                  className="border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 focus:border-blue-500"
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  {category ? (
-                    <option value={category}>{category}</option>
-                  ) : (
-                    <option value="">Seleccione una categoría</option>
-                  )}
-                  {dataCategories?.map((category) => (
-                    <option key={category.id} value={category.categoryName}>
-                      {category.categoryName}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <select
+                className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 focus:border-blue-500"
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                {category ? (
+                  <option value={category}>{category}</option>
+                ) : (
+                  <option value="">Seleccione una categoría</option>
+                )}
+                {dataCategories?.map((category) => (
+                  <option key={category.id} value={category.categoryName}>
+                    {category.categoryName}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="mb-4">
               <label
                 htmlFor="product_price"
-                className="block   text-sm font-bold mt-2"
+                className="block text-sm font-bold mt-2"
               >
                 Precio
               </label>
               <input
                 type="number"
                 placeholder="Type here"
-                className="border border-gray-300 p-2 rounded-md focus:outline-none  focus:ring-1 focus:border-blue-500"
+                className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 focus:border-blue-500"
                 id="product_price"
                 required
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
             </div>
+
             <div className="mb-4">
               <label
-                htmlFor="product_price"
-                className="block   text-sm font-bold mt-2"
+                htmlFor="product_price_mayor"
+                className="block text-sm font-bold mt-2"
               >
                 Precio al mayor
               </label>
               <input
                 type="number"
                 placeholder="Type here"
-                className="border border-gray-300 p-2 rounded-md focus:outline-none  focus:ring-1 focus:border-blue-500"
+                className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 focus:border-blue-500"
                 id="product_price_mayor"
                 required
                 value={priceMayor}
                 onChange={(e) => setPriceMayor(e.target.value)}
               />
             </div>
-            <div className="mb-4 ">
-              <div className="flex items-center  gap-3">
+
+            <div className="mb-4">
+              <div className="flex items-center gap-3">
                 <SwitchOffer toggle={toggle} setToggle={setToggle} />
-                <label
-                  htmlFor="product_price"
-                  className="block   text-sm font-bold "
-                >
-                  En oferta
-                </label>
+                <label className="block text-sm font-bold">En oferta</label>
               </div>
               {toggle && (
-                <div className="flex gap-4 items-center">
-                  <label htmlFor="discountInput" className="form-label">
+                <div>
+                  <label
+                    htmlFor="discountInput"
+                    className="block text-sm font-bold mt-2"
+                  >
                     % de oferta:
                   </label>
                   <input
@@ -491,7 +490,7 @@ function UpdateProduct({ hasEdit, productId }) {
                     min={0}
                     max={100}
                     step={1}
-                    className="form-input border px-3 py-2 rounded-md w-24"
+                    className="w-full border px-3 py-2 rounded-md"
                     value={discountPercentage === 0 ? "" : discountPercentage}
                     onChange={(e) =>
                       setDiscountPercentage(
@@ -502,60 +501,51 @@ function UpdateProduct({ hasEdit, productId }) {
                 </div>
               )}
             </div>
-            <div className="flex items-center  gap-3">
+
+            <div className="flex items-center gap-3">
               <SwitchSellers toggle={bestSellers} setToggle={setBestSellers} />
-              <label
-                htmlFor="product_price"
-                className="block   text-sm font-bold "
-              >
-                Incluir en productos mas vendidos
+              <label className="block text-sm font-bold">
+                Incluir en productos más vendidos
               </label>
             </div>
 
             <div className="mb-4">
-              <label
-                htmlFor="product_price"
-                className="block   text-sm font-bold mt-2"
-              >
+              <label htmlFor="stock" className="block text-sm font-bold mt-2">
                 Cantidad en Stock
               </label>
               <input
                 type="number"
                 placeholder="Type here"
-                className="border border-gray-300 p-2 rounded-md  focus:outline-none focus:ring-1 focus:border-blue-500"
-                id="product_price"
-                // required
+                className="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-1 focus:border-blue-500"
+                id="stock"
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
               />
             </div>
 
-            <div className="flex items-center  mt-3 mb-3 gap-3">
+            <div className="flex items-center mt-3 mb-3 gap-3">
               <SwitchSellers toggle={descripcion} setToggle={setDescripcion} />
-              <label
-                htmlFor="product_price"
-                className="block   text-sm font-bold "
-              >
+              <label className="block text-sm font-bold">
                 Agregar Descripcion
               </label>
             </div>
+
             {descripcion && (
-              <div className="mb-4 ">
-                <label className="block   text-sm font-bold mt-2">
+              <div className="mb-4">
+                <label className="block text-sm font-bold mt-2">
                   Descripcion
                 </label>
                 <textarea
                   placeholder="Escribir aqui"
-                  className="border border-gray-500 p-2 rounded-md focus:outline-none focus:ring-1 focus:border-blue-500"
+                  className="w-full border border-gray-500 p-2 rounded-md focus:outline-none focus:ring-1 focus:border-blue-500"
                   rows="2"
-                  // required
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 ></textarea>
               </div>
             )}
 
-            <div className="flex">
+            <div className="flex flex-wrap gap-2">
               {imageUrl &&
                 imageUrl.map((item) => (
                   <div
@@ -563,15 +553,13 @@ function UpdateProduct({ hasEdit, productId }) {
                     key={item?.publicId}
                     onClick={() => console.log(item?.publicId)}
                   >
-                    <div className="bg-red-600 absolute right-2  font-extrabold text-white z-10 rounded-full w-5 h-5 flex justify-center items-center">
+                    <div className="bg-red-600 absolute right-2 font-extrabold text-white z-10 rounded-full w-5 h-5 flex justify-center items-center">
                       <button
-                        className=" "
                         onClick={() => handleClickDeleteImage(item?.publicId)}
                       >
                         X
                       </button>
                     </div>
-
                     <Image
                       src={item.url}
                       width={150}
@@ -585,13 +573,10 @@ function UpdateProduct({ hasEdit, productId }) {
             <div className="mb-4">
               <input
                 ref={inputFileRef}
-                className="bg-gray-100 rounded-md overflow-hidden text-ellipsis whitespace-nowrap px-2"
+                className="w-full bg-gray-100 rounded-md overflow-hidden text-ellipsis whitespace-nowrap px-2"
                 multiple
                 type="file"
-                onChange={(e) => {
-                  setFile(e.target.files);
-                }}
-                style={{ width: "100%", maxWidth: "300px" }}
+                onChange={(e) => setFile(e.target.files)}
               />
             </div>
 
